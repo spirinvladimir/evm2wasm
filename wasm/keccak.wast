@@ -157,7 +157,7 @@
   ;; A[x + 10] ^= D[x];
   ;; A[x + 15] ^= D[x];
   ;; A[x + 20] ^= D[x];
-  
+
   ;; x = 0
   (i64.store (i32.add (get_local $context_offset) (i32.const 0))
     (i64.xor
@@ -355,7 +355,7 @@
   (local $tmp i32)
   (local $i i32)
 
-  ;; for (i = 0; i <= 24; i++)
+  ;; for (i = 0; i < 24; i++)
   (set_local $i (i32.const 0))
   (block $done
     (loop $loop
@@ -529,8 +529,8 @@
 
       (set_local $round (i32.add (get_local $round) (i32.const 1)))
       (br $loop)
-    )  
-  ) 
+    )
+  )
 )
 
 (func $keccak_block
@@ -675,7 +675,7 @@
       (i64.load (i32.add (get_local $input_offset) (i32.const 128)))
     )
   )
-  
+
   (call $keccak_permute (get_local $context_offset))
 )
 
